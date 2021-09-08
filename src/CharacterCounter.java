@@ -1,3 +1,5 @@
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -64,6 +66,17 @@ public class CharacterCounter {
         //then go into main class and implement
     }
 
+    public String getTextFromFile(String pathToTheFile) {
+        String content = "";
+        try {
+            content = new String(Files.readAllBytes(Paths.get(pathToTheFile)));
+
+        } catch(Exception exception) {
+            exception.printStackTrace();
+        }
+        return content;
+    }
 }
+
 //count the number of times each character occurs in a string
 //print the results to the console

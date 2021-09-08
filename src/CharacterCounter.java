@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class CharacterCounter {
 //class variables
@@ -12,12 +13,25 @@ public class CharacterCounter {
 //loop through string one character at a time, store/update the count
 // print the results
     public void countCharacters(String wordToCount) {
+
+        //make string case insensitive
+        wordToCount = wordToCount.toLowerCase();
+
+
+
         //use char method to store chars in an array
     char[] arrayofChars = wordToCount.toCharArray();
     HashMap<Character, Integer> myCharacterCount = new HashMap<>();
     //for loop to loop through array
         for(int i = 0; i < arrayofChars.length; i++) {
+            ////exclude all non-letters
+            if(Character.isLetter(arrayofChars[i]) == false) {
+                continue;
+            }
+
          //add or update the count of each character into the hash map
+
+
             // create a variable to hold the count
          char theCharacter = arrayofChars[i];
          if(myCharacterCount.containsKey(theCharacter) == false) {
@@ -29,14 +43,25 @@ public class CharacterCounter {
              theValue = theValue + 1;
              myCharacterCount.put(theCharacter, theValue);
          }
-        } System.out.println(myCharacterCount);
+        }
+
+
         ArrayList<Character> myCharacterKeys = new ArrayList<>(myCharacterCount.keySet());
-        System.out.println(myCharacterKeys);
         //Loop through this and print on new lines
         for(int i = 0; i <myCharacterKeys.size(); i++){
             Integer theValue = myCharacterCount.get(myCharacterKeys.get(i));
             System.out.println(myCharacterKeys.get(i) + ":" + theValue);
         }
+    }
+
+    public String getUserInput(){
+        Scanner myScanner = new Scanner(System.in);
+        //create variable to contain input
+        String myUsersInput = myScanner.nextLine();
+        myScanner.close();
+
+        return myUsersInput;
+        //then go into main class and implement
     }
 
 }
